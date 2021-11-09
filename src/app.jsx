@@ -4,6 +4,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import './app.css';
+import HabitAddForm from './components/habitAddForm';
 import Habits from './components/habits';
 import Navbar from './components/navbar';
 import ResetAll from './components/resetAll';
@@ -18,6 +19,8 @@ class App extends Component {
         { id: 2, name: 'Movie', count: 0 },
       ],
     };
+    this.inputRef = React.createRef();
+    this.formRef = React.createRef();
   }
 
   handleIncrement = habit => {
@@ -66,6 +69,24 @@ class App extends Component {
     this.setState({ habits });
   };
 
+  handleSubmit = (event, inputRef, formRef) => {
+    event.preventDefault();
+    const newHabitName = inputRef.current.value;
+    const originHabits = [...this.state.habits];
+    const existIndex = originHabits
+      .map(item => item.name)
+      .indexOf(newHabitName);
+    if (existIndex === -1) {
+      const lastId = originHabits[originHabits.length - 1].id + 1;
+      const newHabit = { id: lastId, name: newHabitName, count: 0 };
+      originHabits.push(newHabit);
+      this.setState({ habits: originHabits });
+      // NOTE: 초기화 정석 방법
+      formRef.current.reset();
+      // NOTE: 초기화 두번 째 방법
+      inputRef.current.value = '';
+    }
+  };
   // getActiveHabitsCount = () => {
   //   const habits = [...this.state.habits];
   //   let totalCount = 0;
@@ -84,6 +105,11 @@ class App extends Component {
           activeHabitsCount={
             this.state.habits.filter(item => item.count > 0).length
           }
+        />
+        <HabitAddForm
+          formRef={this.formRef}
+          inputRef={this.inputRef}
+          onSubmit={this.handleSubmit}
         />
         <Habits
           habits={this.state.habits}
