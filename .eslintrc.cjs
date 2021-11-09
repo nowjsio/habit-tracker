@@ -17,5 +17,8 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react'],
-  rules: {},
+  rules: {
+    'import/extensions': ['off'],
+    'no-console': ['off'],
+  },
 };
