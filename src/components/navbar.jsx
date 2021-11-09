@@ -11,7 +11,9 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar">
-        Active Habit Count: {this.props.activeHabitsCount}
+        <i className="navbar-logo fas fa-leaf" />
+        <span>Active Habit Count : </span>
+        <span className="navbar-count">{this.props.activeHabitsCount}</span>
       </nav>
     );
     // return <div> {this.props.activeHabitsCount}</div>;

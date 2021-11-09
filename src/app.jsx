@@ -62,25 +62,29 @@ class App extends Component {
       item.count = 0;
       return item;
     });
-    console.log(habits);
+    // console.log(habits);
     this.setState({ habits });
   };
 
-  getActiveHabitsCount = () => {
-    const habits = [...this.state.habits];
-    let totalCount = 0;
-    habits.forEach(item => {
-      if (item.count > 0) {
-        totalCount += 1;
-      }
-    });
-    return totalCount;
-  };
+  // getActiveHabitsCount = () => {
+  //   const habits = [...this.state.habits];
+  //   let totalCount = 0;
+  //   habits.forEach(item => {
+  //     if (item.count > 0) {
+  //       totalCount += 1;
+  //     }
+  //   });
+  //   return totalCount;
+  // };
 
   render() {
     return (
       <>
-        <Navbar activeHabitsCount={this.getActiveHabitsCount()} />
+        <Navbar
+          activeHabitsCount={
+            this.state.habits.filter(item => item.count > 0).length
+          }
+        />
         <Habits
           habits={this.state.habits}
           onIncrement={this.handleIncrement}

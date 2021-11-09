@@ -12,7 +12,7 @@ class Habits extends Component {
   render() {
     const { habits, onIncrement, onDecrement, onDelete, onReset } = this.props;
     return (
-      <ul>
+      <ul className="habits">
         {habits.map(habit => (
           <Habit
             key={habit.id}

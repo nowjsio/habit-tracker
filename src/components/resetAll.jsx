@@ -15,7 +15,7 @@ class ResetAll extends Component {
         type="button"
         onClick={this.props.onResetAll}
       >
-        Reset
+        Reset all
       </button>
     );
   }
