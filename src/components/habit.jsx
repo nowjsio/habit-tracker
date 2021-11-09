@@ -30,6 +30,7 @@ class Habit extends Component {
   // };
 
   render() {
+    // console.log(this.props);
     const { onIncrement, onDecrement, onDelete, habit, onReset } = this.props;
     const { name, count } = this.props.habit;
 
