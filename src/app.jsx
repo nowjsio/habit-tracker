@@ -25,9 +25,8 @@ class App extends Component {
 
   handleIncrement = habit => {
     const habits = [...this.state.habits].map(item => {
-      if (item === habit) {
-        item.count += 1;
-        return item;
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count + 1 };
       }
       return item;
     });
@@ -62,7 +61,9 @@ class App extends Component {
 
   handleResetAll = () => {
     const habits = [...this.state.habits].map(item => {
-      item.count = 0;
+      if (item.count !== 0) {
+        return { ...item, count: 0 };
+      }
       return item;
     });
     // console.log(habits);

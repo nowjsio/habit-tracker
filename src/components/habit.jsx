@@ -1,10 +1,10 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import '@fortawesome/fontawesome-free/js/all.js';
 
 // eslint-disable-next-line react/prefer-stateless-function
-class Habit extends Component {
+class Habit extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
