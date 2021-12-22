@@ -1,9 +1,9 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class HabitAddForm extends Component {
+class HabitAddForm extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
