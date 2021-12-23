@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './app';
+// import App from './app';
+import SimpleHabit from './components/simpleHabit';
 
 ReactDOM.render(
   // eslint-disable-next-line react/jsx-filename-extension
   <React.StrictMode>
-    <App />
+    <SimpleHabit />
   </React.StrictMode>,
   document.getElementById('root'),
 );
