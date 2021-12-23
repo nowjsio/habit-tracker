@@ -100,6 +100,7 @@ class App extends Component {
   // };
 
   render() {
+    console.log(`[!]Render app`);
     return (
       <>
         <Navbar
