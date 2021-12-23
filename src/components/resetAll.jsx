@@ -1,24 +1,24 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
-import React, { Component } from 'react';
+import React, { memo } from 'react';
 
-class ResetAll extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <button
-        className="habits-reset"
-        type="button"
-        onClick={this.props.onResetAll}
-      >
-        Reset all
-      </button>
-    );
-  }
-}
+const ResetAll = memo(props => {
+  const { onResetAll } = props;
+  return (
+    <button className="habits-reset" type="button" onClick={onResetAll}>
+      Reset all
+    </button>
+  );
+});
 
 export default ResetAll;
+
+// render() {
+//   return (
+//     <button
+//       className="habits-reset"
+//       type="button"
+//       onClick={this.props.onResetAll}
+//     >
+//       Reset all
+//     </button>
+//   );
+// }
