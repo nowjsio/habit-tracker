@@ -1,38 +1,57 @@
-import React, { Component } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import '../app.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 
-class SimpleHabit extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'Coding',
-      count: 0,
-    };
-  }
-
-  handleIncrement = event => {
+const SimpleHabit = memo(() => {
+  const [habit, setHabit] = useState({ name: 'Coding', count: 0 });
+  const spanRef = useRef();
+  const inputRef = useRef();
+  console.log('[!]spanRef: ', spanRef.current);
+  console.log('[!]inputRef: ', inputRef.current);
+  const handleIncrement = useCallback(event => {
     event.preventDefault();
-    const { name, count } = this.state;
-    this.setState({ name, count: count + 1 });
-  };
+    const { name, count } = habit;
+    setHabit({ name, count: count + 1 });
+  });
 
-  render() {
-    const { name, count } = this.state;
-    return (
-      <li className="habit">
-        <span className="habit-name">{name}</span>
-        <span className="habit-count">{count}</span>
-        <button
-          type="button"
-          className="habit-button habit-increase"
-          onClick={event => this.handleIncrement(event)}
-        >
-          <i className="fas fa-plus-square" />
-        </button>
-      </li>
-    );
-  }
-}
+  /**
+   *  해당 line 은 componentDidMout and componentDidUpadte 와 동일
+   useEffect(() => { 
+     console.log('TEST', habit.count, habit.name);
+   });
+   */
+
+  /**
+   *  해당 line 은 componentDidMout 와 동일
+   useEffect(() => { 
+     console.log('TEST', habit.count, habit.name);
+   }, []);
+   */
+
+  // 해당 line 은 componentDidUpadte 와 동일
+  useEffect(() => {
+    console.log('TEST', habit.count, habit.name);
+    return () => {
+      console.log('TTTTTTTTT');
+    };
+  }, [habit.count]);
+
+  return (
+    <li className="habit">
+      <span ref={spanRef} className="habit-name">
+        {habit.name}
+      </span>
+      <span className="habit-count">{habit.count}</span>
+      <button
+        type="button"
+        className="habit-button habit-increase"
+        onClick={event => handleIncrement(event)}
+      >
+        <i className="fas fa-plus-square" />
+      </button>
+      <input ref={inputRef} type="text" className="test-input" />
+    </li>
+  );
+});
 
 export default SimpleHabit;
